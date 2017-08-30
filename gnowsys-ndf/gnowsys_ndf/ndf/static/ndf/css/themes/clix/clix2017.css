@@ -5066,3 +5066,65 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   color: #720f5e;
   background-color: #ffffff;
 }
+
+/* line 5263, ../../../scss/_clix2017.scss */
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  /* line 5270, ../../../scss/_clix2017.scss */
+  .topnav li:not(:first-child) {
+    display: none;
+  }
+
+  /* line 5274, ../../../scss/_clix2017.scss */
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: 16px;
+    margin-right: 8px;
+  }
+}
+@media screen and (max-width: 600px) {
+  /* line 5285, ../../../scss/_clix2017.scss */
+  .topnav.responsive {
+    position: relative;
+  }
+
+  /* line 5289, ../../../scss/_clix2017.scss */
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  /* line 5295, ../../../scss/_clix2017.scss */
+  .topnav.responsive li {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+/* line 5305, ../../../scss/_clix2017.scss */
+.badges {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  line-height: 16px;
+  text-align: center;
+}
+
+/* line 5314, ../../../scss/_clix2017.scss */
+.badges {
+  display: inline-block;
+  padding: 0;
+  min-width: 2.1em;
+  font-size: .6rem;
+  text-align: center;
+  border-radius: 16%;
+  margin-left: 2px;
+  background: #a5a9ab;
+  color: #fff;
+}
