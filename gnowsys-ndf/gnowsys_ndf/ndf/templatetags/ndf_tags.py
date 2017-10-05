@@ -4049,6 +4049,32 @@ def get_unit_total_points(user_id,group_id):
 
 #     return json.dumps(node_structure)
 
+
+@register.assignment_tag
+def get_node_hierarchy(node_obj):
+    node_structure = []
+    for each in node_obj.collection_set:
+        lesson_dict ={}
+        lesson = Node.get_node_by_id(each)
+        if lesson:
+            lesson_dict['name'] = lesson.name
+            lesson_dict['type'] = 'lesson'
+            lesson_dict['id'] = str(lesson._id)
+            lesson_dict['language'] = lesson.language[0]
+            lesson_dict['activities'] = []
+            if lesson.collection_set:
+                for each_act in lesson.collection_set:
+                    activity_dict ={}
+                    activity = Node.get_node_by_id(each_act)
+                    if activity:
+                        activity_dict['name'] = activity.name
+                        activity_dict['type'] = 'activity'
+                        activity_dict['id'] = str(activity._id)
+                        lesson_dict['activities'].append(activity_dict)
+            node_structure.append(lesson_dict)
+
+    return json.dumps(node_structure)
+
 @register.assignment_tag
 def user_groups(is_super_user,user_id):
 	user_grps_count = {}
@@ -4138,13 +4164,13 @@ def get_trans_node(node_id,lang):
 
 # @register.assignment_tag
 @register.inclusion_tag('ndf/quiz_player.html')
-def load_quiz_player(request, group_id, node, allow_attempt=True):
+def load_quiz_player(request, group_id, node, hide_edit_opt=False):
     from gnowsys_ndf.ndf.views.quiz import render_quiz_player
     node_member_of_names_list = node.member_of_names_list
     if "QuizItem" in node_member_of_names_list or "QuizItemEvent" in node_member_of_names_list:
         con_var = render_quiz_player(request, group_id, node, get_context=True)
         con_var.update({'template': 'ndf/quiz_player.html', 'request': request,
-        	'allow_attempt': allow_attempt })
+			'hide_edit_opt': hide_edit_opt})
     # rel_value = get_relation_value(ObjectId(node._id),"translation_of")
     # for each in rel_value['grel_node']:
     #     if each.language[0] ==  get_language_tuple(lang)[0]:

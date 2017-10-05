@@ -334,7 +334,7 @@ def explore_drafts(request):
 
     module_unit_ids = [val for each_module in modules_cur for val in each_module.collection_set ]
 
-    # modules_cur.rewind()
+
     gstaff_access = check_is_gstaff(group_id,request.user)
     draft_query = {'member_of': gst_base_unit_id,
               '_id': {'$nin': module_unit_ids},
@@ -351,7 +351,7 @@ def explore_drafts(request):
 
     base_unit_cur = node_collection.find(draft_query).sort('last_update', -1)
     # print "\nbase: ", base_unit_cur.count()
-    # base_unit_page_cur = paginator.Paginator(base_unit_cur, page_no, GSTUDIO_NO_OF_OBJS_PP)
+
 
     '''
     base_unit_cur = node_collection.find({'member_of': gst_base_unit_id,
@@ -363,7 +363,9 @@ def explore_drafts(request):
                                           {'author_set': request.user.id},
                                           # {'group_type': 'PUBLIC'}
                                           ]}).sort('last_update', -1)
+
     '''
+#     base_unit_page_cur = paginator.Paginator(base_unit_cur, page_no, GSTUDIO_NO_OF_OBJS_PP)
 
     # base_unit_page_cur = paginator.Paginator(base_unit_cur, page_no, GSTUDIO_NO_OF_OBJS_PP)
 
@@ -376,6 +378,7 @@ def explore_drafts(request):
         context_variable,
         context_instance=RequestContext(request))
 
+@get_execution_time
 def module_order_list(request):
     response_dict = {"success": False}
     module_id_list = request.POST.get('module_list', [])
@@ -384,7 +387,6 @@ def module_order_list(request):
             module_id_list = json.loads(module_id_list)
             module_obj_list = map(lambda each_id: Node.get_node_by_id(ObjectId(each_id)), module_id_list)
             ga_node = create_gattribute(ObjectId(group_id), 'items_sort_list', module_obj_list)
-            # print ga_node
             response_dict["success"] = True
     except Exception as module_order_list_err:
         print "\nError Occurred in module_order_list(). ", module_order_list_err

@@ -2098,7 +2098,7 @@ def activity_player_detail(request, group_id, lesson_id, activity_id):
         'trans_node':trans_node,
         'act_list':trans_act_list,
         'trans_lesson_name':lesson_name,
-        'no_footer': True, 'allow_finish_lesson': False
+        'no_footer': True
     }
 
     if request.user.is_authenticated():
@@ -2118,9 +2118,7 @@ def activity_player_detail(request, group_id, lesson_id, activity_id):
             each_counter_obj.last_update = datetime.datetime.now()
             each_counter_obj.save()
             # print "\n updated counter_obj: ", each_counter_obj['visited_nodes']
-        if 'tab_name' in group_obj.project_config and group_obj.project_config['tab_name'].lower() == "questions":
-            if request.user.id not in lesson_node.author_set:
-                context_variables.update({'allow_finish_lesson': True})
+        # if 'tab_name' in group_obj.project_config and group_obj.project_config['tab_name'].lower() == "questions":
     template = "ndf/activity_player.html"
     return render_to_response(template,
                                 context_variables,
@@ -2449,8 +2447,8 @@ def course_raw_material(request, group_id, node_id=None,page_no=1):
     
     if "announced_unit" in group_obj.member_of_names_list or "Group" in group_obj.member_of_names_list:
         template = 'ndf/lms.html'
-        assets_page_info = paginator.Paginator(asset_nodes, page_no, GSTUDIO_NO_OF_OBJS_PP)
-        context_variables.update({'assets_page_info':assets_page_info})
+        # assets_page_info = paginator.Paginator(asset_nodes, page_no, GSTUDIO_NO_OF_OBJS_PP)
+        # context_variables.update({'assets_page_info':assets_page_info})
     if 'BaseCourseGroup' in group_obj.member_of_names_list:
         template = 'ndf/basecourse_group.html'
     
@@ -2534,10 +2532,11 @@ def course_gallery(request, group_id,node_id=None,page_no=1):
             'group_set': {'$all': [ObjectId(group_id)]},'tags': "asset@gallery"}).sort('last_update', -1)
     
     template = 'ndf/gcourse_event_group.html'
+    
     if "announced_unit" in group_obj.member_of_names_list or "Group" in group_obj.member_of_names_list and 'base_unit' not in group_obj.member_of_names_list:
-        assets_page_info = paginator.Paginator(asset_nodes, page_no, GSTUDIO_NO_OF_OBJS_PP)
         template = 'ndf/lms.html'
-        context_variables.update({'assets_page_info':assets_page_info})
+        # assets_page_info = paginator.Paginator(asset_nodes, page_no, GSTUDIO_NO_OF_OBJS_PP)
+        # context_variables.update({'assets_page_info':assets_page_info})
     
     context_variables.update({'asset_nodes': asset_nodes})
 
@@ -2790,7 +2789,7 @@ def course_filters(request, group_id):
 
 # @login_required
 # @get_execution_time
-def course_analytics(request, group_id, user_id, render_template=False, get_result_dict=False):
+def course_analytics(request, group_id, user_id, render_template=False, get_result_dict=False, **kwargs):
     # set get_result_dict=True to get only raw data in dict format,
     # without being redirected to template. So that this method can
     # use to get dict result data in shell or for any command.
@@ -2805,10 +2804,20 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
     #                             )
 
     analytics_data = {'user_id': user_id}
+    analytics_data.update({
+                'correct_attempted_quizitems' : 0,
+                'unattempted_quizitems': 0,
+                'visited_quizitems': 0,
+                'notapplicable_quizitems': 0,
+                'incorrect_attempted_quizitems': 0,
+                'attempted_quizitems': 0,
+            })
     data_points_dict = {}
+    assessment_and_quiz_data = kwargs.get('assessment_and_quiz_data', False)
     
     try:
-        user_obj = User.objects.get(pk=int(user_id))
+        # user_obj = User.objects.get(pk=int(user_id))
+        author_obj = node_collection.one({ '_type': u'Author', 'created_by': int(user_id) })
     except Exception, e:
         print e
         return analytics_data
@@ -2829,7 +2838,6 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
     group_obj_member_of_names_list = group_obj.member_of_names_list
 
     if data_points_dict and not isinstance(data_points_dict, dict):
-
         data_points_dict = json.loads(data_points_dict)
         analytics_data['correct_attempted_quizitems'] = (data_points_dict['quiz_points'] / GSTUDIO_QUIZ_CORRECT_POINTS)
         analytics_data['user_notes'] = (data_points_dict['notes_points'] / GSTUDIO_NOTE_CREATE_POINTS)
@@ -2838,7 +2846,7 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
         analytics_data['users_points'] = data_points_dict['users_points']
 
     counter_obj = Counter.get_counter_obj(user_id, ObjectId(group_id))
-    analytics_instance = AnalyticsMethods(user_obj.id,user_obj.username, group_id)
+    analytics_instance = AnalyticsMethods(author_obj.created_by, author_obj.name, group_id)
 
     analytics_data['total_quizitems'] = 0
 
@@ -2887,10 +2895,8 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
     # analytics_data['completed_res'] = analytics_instance.get_completed_resources_count()
     # print "\n Completed Resources === ", completed_res, "\n\n"
 
-    analytics_data['username'] = user_obj.username
+    analytics_data['username'] = author_obj.name
     # QuizItem Section
-
-
 
     if "announced_unit" in group_obj_member_of_names_list:
         visited_nodes = []
@@ -2907,7 +2913,7 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
                 if each_lesson_key == 'id':
                     lesson_id = each_lesson_dict[each_lesson_key]
                     
-                if each_lesson_key == 'children':
+                if each_lesson_key == 'activities':
                     all_activities = all_activities + len(each_lesson_dict[each_lesson_key])
                     for each_act_dict in each_lesson_dict[each_lesson_key]:
                         for each_act_key, each_act_val in each_act_dict.iteritems():
@@ -2938,22 +2944,29 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
         # analytics_data['completed_res'] = analytics_instance.get_completed_resources_count()
         # print "\n Completed Resources === ", completed_res, "\n\n"
 
+        # following code will override (gstudio quiz) counters:
+        if assessment_and_quiz_data:
+            analytics_data.update({
+                'correct_attempted_assessments': 0,
+                'unattempted_assessments': 0,
+                'visited_assessments': 0,
+                'notapplicable_assessments': 0,
+                'incorrect_attempted_assessments': 0,
+                'attempted_assessments': 0,
+                'total_assessment_items': 0
+                })
+
         items_count_cur = group_obj.get_attribute("total_assessment_items")
         if items_count_cur.count():
-            analytics_data['total_quizitems'] = items_count_cur[0].object_value
+            if assessment_and_quiz_data:
+                analytics_data['total_assessment_items'] = items_count_cur[0].object_value
+            else:
+                analytics_data['total_quizitems'] = items_count_cur[0].object_value
 
+        # total_quiz_points = 0  # not used anywhere
         # assessment_list_cur = group_obj.get_attribute("assessment_list")
         # if assessment_list_cur.count():
         #     assessment_list_cur = assessment_list_cur[0]
-        total_quiz_points = 0
-        analytics_data.update({
-                    'correct_attempted_quizitems' : 0,
-                    'unattempted_quizitems': 0,
-                    'visited_quizitems': 0,
-                    'notapplicable_quizitems': 0,
-                    'incorrect_attempted_quizitems': 0,
-                    'attempted_quizitems': 0
-                })
         '''
         analytics_data['correct_attempted_quizitems'] = 0
         analytics_data['unattempted_quizitems'] = 0
@@ -2965,12 +2978,24 @@ def course_analytics(request, group_id, user_id, render_template=False, get_resu
         try:
             assessment_data_list = counter_obj['assessment']
             for each_dict in assessment_data_list:
-                analytics_data['correct_attempted_quizitems'] += each_dict['correct']
-                analytics_data['unattempted_quizitems'] += each_dict['unattempted']
-                analytics_data['visited_quizitems'] += each_dict['visited']
-                analytics_data['notapplicable_quizitems'] += each_dict['notapplicable']
-                analytics_data['incorrect_attempted_quizitems'] += each_dict['incorrect']
-                analytics_data['attempted_quizitems'] += each_dict['attempted']
+                if assessment_and_quiz_data:
+                    analytics_data['correct_attempted_assessments'] += each_dict['correct']
+                    # analytics_data['unattempted_assessments'] += each_dict['unattempted']
+                    # analytics_data['visited_assessments'] += each_dict['visited']
+                    analytics_data['notapplicable_assessments'] += each_dict['notapplicable']
+                    analytics_data['incorrect_attempted_assessments'] += each_dict['incorrect']
+                    analytics_data['attempted_assessments'] += each_dict['attempted']
+                else:
+                    analytics_data['correct_attempted_quizitems'] += each_dict['correct']
+                    # analytics_data['unattempted_quizitems'] += each_dict['unattempted']
+                    # analytics_data['visited_quizitems'] += each_dict['visited']
+                    analytics_data['notapplicable_quizitems'] += each_dict['notapplicable']
+                    analytics_data['incorrect_attempted_quizitems'] += each_dict['incorrect']
+                    analytics_data['attempted_quizitems'] += each_dict['attempted']
+            if assessment_and_quiz_data:
+                analytics_data['unattempted_assessments'] = analytics_data['total_assessment_items'] - analytics_data['attempted_assessments']
+            else:
+                analytics_data['unattempted_quizitems'] = analytics_data['total_quizitems'] - analytics_data['attempted_quizitems']
         except Exception as assessment_analytics_err:
             print "\nIn User analytics. Ignore if KeyError. Error: {0}".format(assessment_analytics_err)
             pass
@@ -3664,6 +3689,77 @@ def delete_activity_page(request, group_id):
     return HttpResponse('fail')
 
 
+def _get_unit_hierarchy(unit_group_obj,lang="en"):
+    '''
+    ARGS: unit_group_obj
+    Result will be of following form:
+    {
+        name: 'Lesson1',
+        type: 'lesson',
+        id: 'l1',
+        activities: [
+            {
+                name: 'Activity 1',
+                type: 'activity',
+                id: 'a1'
+            },
+            {
+                name: 'Activity 1',
+                type: 'activity',
+                id: 'a2'
+            }
+        ]
+    }, {
+        name: 'Lesson2',
+        type: 'lesson',
+        id: 'l2',
+        activities: [
+            {
+                name: 'Activity 1',
+                type: 'activity',
+                id: 'a1'
+            }
+        ]
+    }
+    '''
+    # n = node_collection.one({'_id': ObjectId('593043c64a82533fc27b78f8')})
+    # trans_act_list = get_lang_node(n._id,request.LANGUAGE_CODE)
+    # for each in trans_act_list:
+    #     for k,v in trans_act_list.iteritems():
+    #         lesson_dict = {}
+    #         lesson
+
+    unit_structure = []
+    for each in unit_group_obj.collection_set:
+        lesson_dict ={}
+        lesson = Node.get_node_by_id(each)
+        if lesson:
+            trans_lesson = get_lang_node(lesson._id,lang)
+            if trans_lesson:
+                lesson_dict['label'] = trans_lesson.name
+            else:
+                lesson_dict['label'] = lesson.name
+            lesson_dict['id'] = lesson._id
+            lesson_dict['type'] = 'unit-name'
+            lesson_dict['children'] = []
+            if lesson.collection_set:
+                for each_act in lesson.collection_set:
+                    activity_dict ={}
+                    activity = Node.get_node_by_id(each_act)
+                    if activity:
+                        trans_act_name = get_lang_node(each_act,lang)
+                        if trans_act_name:
+                            activity_dict['label'] = trans_act_name.altnames or trans_act_name.name
+                            # activity_dict['label'] = trans_act_name.name
+                        else:
+                            # activity_dict['label'] = activity.name
+                            activity_dict['label'] = activity.altnames or activity.name
+                        activity_dict['type'] = 'activity-group'
+                        activity_dict['id'] = str(activity._id)
+                        lesson_dict['children'].append(activity_dict)
+            unit_structure.append(lesson_dict)
+    return unit_structure
+
 def widget_page_create_edit(request, group_id, node_id=None):
     node_id = request.GET.get('node_id', None)
     detail_url = request.GET.get('detail_url',)
@@ -3716,81 +3812,172 @@ def load_assessment_analytics(request, group_id):
     group_id = group_obj._id
     group_name = group_obj.name
     # Variable Decalarations
-    update_counter_obj = False
-    correctAttemptCount = visitedCount = unattemptedCount = 0
+    correctAttemptCount = unattemptedCount = 0
     notapplicableCount = incorrectCount = attemptedCount = 0
+    count_dict = {'correctAttemptCount': correctAttemptCount, 
+        'unattemptedCount': unattemptedCount, 'notapplicableCount': notapplicableCount,
+        'incorrectCount': incorrectCount, 'attemptedCount': attemptedCount}
+    total_items = 0
+    offeredId_list = []
     try:
         assessment_list_cur = group_obj.get_attribute("assessment_list")
+        total_assessment_items_cur = group_obj.get_attribute("total_assessment_items")
+        if total_assessment_items_cur.count():
+            total_items = total_assessment_items_cur[0].object_value
+
+        active_user_ids_list = [request.user.id]
+        if GSTUDIO_BUDDY_LOGIN:
+            active_user_ids_list += Buddy.get_buddy_userids_list_within_datetime(request.user.id, datetime.datetime.now())
         if assessment_list_cur.count():
             assessment_list = assessment_list_cur[0].object_value
             for each_sublist in assessment_list:
-                # each_sublist[0] -- bankID
-                # each_sublist[1] -- OfferedId
+                # each_sublist[0] -- bankID & each_sublist[1] -- OfferedId
                 try:
-                    user_data_set = user_assessment_results("https://" + domain, user_id,
+                    user_data_set = user_assessment_results("https://" + domain, int(user_id),
                      each_sublist[0], each_sublist[1])
                     if user_data_set:
-                        correctAttemptCount += user_data_set['Correct']
-                        visitedCount += user_data_set['Visited']
-                        unattemptedCount += user_data_set['Unattempted']
-                        notapplicableCount += user_data_set['NotApplicable']
-                        incorrectCount += user_data_set['Incorrect']
-                        attemptedCount += user_data_set['Attempted']
-                        update_counter_obj = True
+                        try:
+                            for buser_id in active_user_ids_list:
+                                counter_obj = Counter.get_counter_obj(buser_id, group_id)
+                                #create
+                                if not counter_obj['assessment']:
+                                    assessment_dict = {'id': each_sublist[1], 'correct': user_data_set['Correct'],
+                                    'notapplicable': user_data_set['NotApplicable'], 'attempted': user_data_set['Attempted'], 
+                                    'incorrect': user_data_set['Incorrect']}
+                                    counter_obj['assessment'].append(assessment_dict)
+                                    counter_obj['group_points'] += (user_data_set['Correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+                                else:
+                                    #edit
+                                    reattempt = False
+                                    for each_dict in counter_obj['assessment']:
+                                        # check if AssessmentOffered Id exists in the values list
+                                        if each_sublist[1] in each_dict.values():
+                                            counter_obj['group_points'] -= (each_dict['correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+                                            counter_obj['group_points'] += (user_data_set['Correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+                                            each_dict.update({'correct': user_data_set['Correct'],
+                                             'notapplicable': user_data_set['NotApplicable'],
+                                             'attempted': user_data_set['Attempted'],
+                                             'incorrect': user_data_set['Incorrect']})
+                                            reattempt = True
+                                            break
+                                    if not reattempt:
+                                        assessment_dict = {'id': each_sublist[1], 'correct': user_data_set['Correct'],
+                                        'notapplicable': user_data_set['NotApplicable'], 'attempted': user_data_set['Attempted'],
+                                        'incorrect': user_data_set['Incorrect']}
+                                        counter_obj['assessment'].append(assessment_dict)
+                                        counter_obj['group_points'] += (user_data_set['Correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+                                counter_obj.last_update = datetime.datetime.now()
+                                counter_obj.save()
+                        except Exception as update_asmnt_anlytcs_for_buddies_err:
+                            pass
+                            succes_update = False
+                            print "\nError occurred in update_assessment_analytics_for_buddies(). ", update_asmnt_anlytcs_for_buddies_err
                 except Exception as no_result_found_err:
                     print "Unable to fetch Results for Assessment: {0} attempted by \
-                    User: {1}. \n Error: {2}".format(each_sublist[1], user_id, no_result_found_err)
+                    User: {1}. \n Error: {2}".format(each_sublist[1], str(user_id), no_result_found_err)
                     pass
-        if update_counter_obj:
-            counter_obj = Counter.get_counter_obj(user_id, group_id)
-            #create
-            if not counter_obj['assessment']:
-                assessment_dict = {'id': each_sublist[1], 'correct': correctAttemptCount,
-                'visited': visitedCount, 'unattempted': unattemptedCount, 
-                'notapplicable': notapplicableCount, 'attempted': attemptedCount, 
-                'incorrect': incorrectCount}
-                counter_obj['assessment'].append(assessment_dict)
-                counter_obj['group_points'] += (correctAttemptCount * GSTUDIO_QUIZ_CORRECT_POINTS)
-            else:
-                #edit
-                reattempt = False
-                for each_dict in counter_obj['assessment']:
-                    # check if AssessmentOffered Id exists in the values list
-                    if each_sublist[1] in each_dict.values():
-                        # counter_obj['group_points'] -= (each_dict['correct']) * GSTUDIO_QUIZ_CORRECT_POINTS
-                        counter_obj['group_points'] = (correctAttemptCount * GSTUDIO_QUIZ_CORRECT_POINTS)
-                        each_dict.update({'correct': correctAttemptCount, 'visited': visitedCount,
-                         'unattempted': unattemptedCount, 'notapplicable': notapplicableCount,
-                         'attempted': attemptedCount, 'incorrect': incorrectCount})
-                        reattempt = True
-                        break
-                if not reattempt:
-                    assessment_dict = {'id': each_sublist[1], 'correct': correctAttemptCount,
-                    'visited': visitedCount, 'unattempted': unattemptedCount,
-                    'notapplicable': notapplicableCount, 'attempted': attemptedCount,
-                    'incorrect': incorrect}
-                    counter_obj['assessment'].append(assessment_dict)
-                    counter_obj['group_points'] = (correctAttemptCount * GSTUDIO_QUIZ_CORRECT_POINTS)
-            counter_obj.last_update = datetime.datetime.now()
-            counter_obj.save()
-
+            counter_obj = Counter.get_counter_obj(int(user_id), group_id)
             assessment_data_list = counter_obj['assessment']
+
             for each_dict in assessment_data_list:
                 try:
                     result_set['correct_attempted_quizitems'] += each_dict['correct']
-                    result_set['visited_quizitems'] += each_dict['visited']
-                    result_set['unattempted_quizitems'] += each_dict['unattempted']
+                    # result_set['visited_quizitems'] += each_dict['visited']
+                    # result_set['unattempted_quizitems'] += each_dict['unattempted']
                     result_set['incorrect_attempted_quizitems'] += each_dict['incorrect']
-                    result_set['notapplicable_quizitems'] += each_dict['notapplicable']
+                    # result_set['notapplicable_quizitems'] += each_dict['notapplicable']
                     result_set['attempted_quizitems'] += each_dict['attempted']
                 except Exception as key_err:
                     print "\nIn load_assessment_analytics() Ignore if KeyError. Error: {0}".format(key_err)
+            result_set['unattempted_quizitems'] = total_items - result_set['attempted_quizitems']
+            result_set['users_points'] = counter_obj['group_points']
     except Exception as e:
         print "\nError: ",e
     # print "\nRS: ", result_set
     return HttpResponse(json.dumps(result_set))
 
 
+def update_assessment_analytics_for_buddies(offeredId, user_ids, logged_in_user_id, user_data_set):
+    succes_update = True
+    try:
+        for user_id in user_ids:
+            counter_obj = Counter.get_counter_obj(user_id, group_id)
+            #create
+            if not counter_obj['assessment']:
+                assessment_dict = {'id': offeredId, 'correct': user_data_set['Correct'],
+                'notapplicable': user_data_set['NotApplicable'], 'attempted': user_data_set['Attempted'], 
+                'incorrect': user_data_set['Incorrect']}
+                counter_obj['assessment'].append(assessment_dict)
+                counter_obj['group_points'] += (user_data_set['Correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+            else:
+                #edit
+                reattempt = False
+                for each_dict in counter_obj['assessment']:
+                    # check if AssessmentOffered Id exists in the values list
+                    if offeredId in each_dict.values():
+                        counter_obj['group_points'] -= (each_dict['correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+                        counter_obj['group_points'] += (user_data_set['Correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+                        each_dict.update({'correct': user_data_set['Correct'],
+                         'notapplicable': user_data_set['NotApplicable'],
+                         'attempted': user_data_set['Attempted'],
+                         'incorrect': user_data_set['Incorrect']})
+                        reattempt = True
+                        break
+                if not reattempt:
+                    assessment_dict = {'id': offeredId, 'correct': user_data_set['Correct'],
+                    'notapplicable': user_data_set['NotApplicable'], 'attempted': user_data_set['Attempted'],
+                    'incorrect': user_data_set['Incorrect']}
+                    counter_obj['assessment'].append(assessment_dict)
+                    counter_obj['group_points'] += (user_data_set['Correct'] * GSTUDIO_QUIZ_CORRECT_POINTS)
+            counter_obj.last_update = datetime.datetime.now()
+            counter_obj.save()
+    except Exception as update_asmnt_anlytcs_for_buddies_err:
+        pass
+        succes_update = False
+        print "\nError occurred in update_assessment_analytics_for_buddies(). ", update_asmnt_anlytcs_for_buddies_err
+    return succes_update
+
+# def get_lang_node(node_id,lang):
+#     rel_value = get_relation_value(ObjectId(node_id),"translation_of")
+#     for each in rel_value['grel_node']:
+#         if each.language[0] ==  get_language_tuple(lang)[0]:
+#             trans_node = each
+#             return trans_node
+
+# def get_trans_node_list(node_list,lang):
+#     trans_node_list = []
+#     for each in node_list:
+#         each_node = get_lang_node(each,lang)
+#         if each_node :  
+#             # trans_node_list.append({ObjectId(each_node._id): {"name":(each_node.altnames or each_node.name),"basenodeid":ObjectId(each)}})
+#             trans_node_list.append({ObjectId(each_node._id): {"name": each_node.name, "basenodeid":ObjectId(each)}})
+#         else:
+#             node = node_collection.one({"_id":ObjectId(each)})
+#             # trans_node_list.append({ObjectId(node._id): {"name":(node.altnames or node.name),"basenodeid":ObjectId(node._id)}})
+#             trans_node_list.append({ObjectId(node._id): {"name": node.name, "basenodeid":ObjectId(node._id)}})
+#     if trans_node_list:
+#         return trans_node_list
+
+def get_lang_node(node_id,lang):
+    rel_value = get_relation_value(ObjectId(node_id),"translation_of")
+    for each in rel_value['grel_node']:
+        if each.language[0] ==  get_language_tuple(lang)[0]:
+            trans_node = each
+            return trans_node
+
+def get_trans_node_list(node_list,lang):
+    trans_node_list = []
+    for each in node_list:
+        each_node = get_lang_node(each,lang)
+        if each_node :  
+            # trans_node_list.append({ObjectId(each_node._id): {"name":(each_node.altnames or each_node.name),"basenodeid":ObjectId(each)}})
+            trans_node_list.append({ObjectId(each_node._id): {"name": each_node.name, "altnames": each_node.altnames, "basenodeid":ObjectId(each)}})
+        else:
+            node = node_collection.one({"_id":ObjectId(each)})
+            # trans_node_list.append({ObjectId(node._id): {"name":(node.altnames or node.name),"basenodeid":ObjectId(node._id)}})
+            trans_node_list.append({ObjectId(node._id): {"name": node.name,"altnames": node.altnames, "basenodeid":ObjectId(node._id)}})
+    if trans_node_list:
+        return trans_node_list
 
 @get_execution_time
 def course_quiz_data(request, group_id):

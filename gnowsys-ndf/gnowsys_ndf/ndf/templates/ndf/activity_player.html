@@ -10,6 +10,7 @@
 {% check_is_gstaff group_id request.user as is_gstaff %}
 {% user_access_policy groupid request.user as user_access_priv %}
 {% get_group_object groupid as group_object %}
+{% get_attribute_value node.pk 'discussion_enable' as node_discussion %}
 
 
 <style type="text/css">
@@ -70,9 +71,11 @@
             <div class="course_tree">
               <div class="lesson-title" title="{{trans_lesson_name}}">
                   <b>{{trans_lesson_name}}</b>
+                  {% comment %}
                   {% if allow_finish_lesson %}
-                    <a href="#" class="finish-lesson right">Finish</a>
+                    <a href="#" class="purple-btn finish-lesson right">Finish</a>
                   {% endif %}
+                  {% endcomment %}
               </div>
               <div class="activity-title">
               {% for each in act_list %}
@@ -100,7 +103,7 @@
                     {% if grel_admin_page.grel_id %}<a class="admin-page right"> {% trans "Teacher's Help" %}</a>{% endif %}
                   {% endif  %}
 
-                {% get_attribute_value node.pk 'discussion_enable' as node_discussion %}
+                
                 {% if node_discussion %}
                 <a class="discuss right">{% trans "Discuss" %} </a>
                 {% endif %}
@@ -113,7 +116,7 @@
               {% endif %}
               <div class="activity_page_rendered buddy_margin">
                 {% if "QuizItemEvent" in node_member_of_names_list or "QuizItem" in node_member_of_names_list%}
-                  {% load_quiz_player request group_id node allow_finish_lesson %}
+                  {% load_quiz_player request group_id node True %}
                 {% else %}
                 {# {{node.content|safe}} #}
                 {% include "ndf/node_ajax_content.html" with node=trans_node expand_content=True  no_discussion=True hide_breadcrumbs=True %}
@@ -298,6 +301,7 @@
        
       });
 
+  /*
   $(document).on('click', '.finish-lesson', function(e){
       confirm_lesson_completion()
   })
@@ -352,6 +356,7 @@
             }
         });
   }
+  */
 
 </script>
 
