@@ -22,6 +22,31 @@
 	    </div>
 
 
+
+
+          {% if 'CourseEventGroup' not in group_object.member_of_names_list %}
+          <!-- {% switch_group_conditions request.user group_id as switch_conditions %} -->
+              {% if node.created_by == request.user.id or is_gstaff %}
+              <!-- If resource is already under moderation, don't show cross-publish button -->
+
+                  <span  title="{% trans 'Publish this resource in other group/s' %}" class="has-tip tip-bottom"><a id="switch_group" class="tiny button radius mod-btn" data-reveal-id="publish_resource"> {% trans "Cross Publish" %}</a></span>
+                  
+                  <div id="publish_resource" class="reveal-modal" data-reveal style="position:absolute;"> 
+                      <h4>{% trans "Select Groups" %} {{node.name}}</h4>
+                      <div id="switchgrp" class="content">
+                      <ul id="group_drawer" class="large-block-grid-2">
+
+
+                      </ul><br/>
+                      <input type="button" id="save_switch_group" class="round button push-4" value="{% trans 'Save selected group' %}">
+                      </div>
+                      <a class="close-reveal-modal">&#215;</a>
+                  </div>
+              {% else %}
+                  <input type="button" class="tiny button radius mod-btn secondary disabled" title="{% trans 'You are not authorized for this action' %}" value="{% trans 'Cross Publish' %}">
+              {% endif %}
+          {% endif %}
+
           {% if 'Page'  not in node.member_of_names_list %}
           <div class="right small-12 medium-6 columns">
           <a class="text_button right"  href="{% url 'read_file' group_name_tag node download_filename %}"  download="{{ download_filename }}">
