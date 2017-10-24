@@ -1,21 +1,100 @@
-
 {% extends "ndf/gbase.html" %}
 {% load i18n %}
 {% load ndf_tags %}
 {% block body_content %}
-<input type="button" name="btn" class="btn" value="Get messages">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+
+.notebook-left{
+	background-color: rgba(128, 128, 128, 0.14);
+	height:100vh;
+}
+.notebook-right{
+	background-color: rgba(128, 128, 128, 0.14);
+		height:100vh;
+}
+.active{
+	background-color: #74b3dc;
+}
+
+.notes-button button {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: black;
+    padding: 8px 25px;
+    cursor: pointer;
+    float: left;
+    border-radius: 7px;
+    margin-top: 13px;
+}
+
+/* Clear floats (clearfix hack) */
+.notes-button:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.notes-button button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.notes-button button:hover {
+    background-color: gray;
+}
+
+.notebook-container{
+	background-color: #fffde9;
+	padding: 0.618em 1.236em;
+    height: 100vh;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.notebook-text{
+	border-bottom: 2px solid rgba(128, 128, 128, 0.35);
+	height:52px;
+}
+.right-border{
+	border-right: 2px solid rgba(128, 128, 128, 0.35); 
+}
+</style>
+<div class="small-12 columns">
+	<div class="large-2 medium-3 small-4 columns notebook-left">
+		<div class="notes-button">
+		  <button>Notes by Me</button>
+		  <button>All Notes</button>
+		</div>
+		<ul class="side-nav">
+		  <li><a href="#" style="color:white;" class="active">This is example Note</a></li>
+		  <li><a href="#" c>Another Sample note </a></li>
+		  <li><a href="#">note 3</a></li>
+		  <li><a href="#">note 4</a></li>
+		</ul>
+	</div>
+	<div class="large-10 medium-9 small-8 columns notebook-right">
+		<div class="notebook-container">
+			<div class="notebook-text">
+					<div class="left small-9 columns">
+						Notebook Title
+					</div>
+					<div class="right small-1 columns">
+						<p class="right-border">Tags</p>
+					</div>
+					<div class="right small-1 columns">
+						<p class="right-border">Ratings</p>
+						
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr>
 
 
-<script type="text/javascript">
-    $(".btn").click(function(){
-    $.ajax({
-                 url: "{% url 'get_telegram_content' node.pk %}",
-                 type:"GET",
-                 success: function(data) {
-                        alert(data);
-                   }
-          })
-    })
-</script>
+
+
+
 
 {% endblock body_content %}
