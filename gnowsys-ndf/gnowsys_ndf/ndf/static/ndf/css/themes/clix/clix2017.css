@@ -6801,19 +6801,32 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   border: 1px solid rgba(128, 128, 128, 0.23);
   width: 79%;
   box-shadow: 0px 0px 5px #73859f;
+  margin-left: 10px;
 }
-/* line 6934, ../../../scss/_clix2017.scss */
+@media screen and (max-width: 450px) {
+  /* line 6926, ../../../scss/_clix2017.scss */
+  .task_editor_section {
+    width: 94%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  /* line 6926, ../../../scss/_clix2017.scss */
+  .task_editor_section {
+    width: 97%;
+  }
+}
+/* line 6941, ../../../scss/_clix2017.scss */
 .task_editor_section #scstyle {
   margin-top: -10px;
 }
-/* line 6937, ../../../scss/_clix2017.scss */
+/* line 6944, ../../../scss/_clix2017.scss */
 .task_editor_section .task_editor_top {
   border-top: 4px solid #74b3dc;
   width: 101.3%;
   margin-left: -15px;
   margin-top: -1px;
 }
-/* line 6944, ../../../scss/_clix2017.scss */
+/* line 6951, ../../../scss/_clix2017.scss */
 .task_editor_section .task_head {
   height: 65px;
   font-size: 22px;
@@ -6821,23 +6834,24 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   color: black;
   border-bottom: 2px solid rgba(128, 128, 128, 0.23);
 }
-/* line 6953, ../../../scss/_clix2017.scss */
+/* line 6960, ../../../scss/_clix2017.scss */
 .task_editor_section form {
   font-size: 17px;
   padding: 10px 0px 0px 10px;
 }
-/* line 6958, ../../../scss/_clix2017.scss */
+/* line 6965, ../../../scss/_clix2017.scss */
 .task_editor_section .task_ex {
   border-bottom: 2px solid rgba(128, 128, 128, 0.23);
+  text-align: left;
 }
-/* line 6960, ../../../scss/_clix2017.scss */
+/* line 6968, ../../../scss/_clix2017.scss */
 .task_editor_section .task_ex.active {
   border: 2px solid #74b3dc;
   margin-left: -16px;
   width: 101.5%;
   margin-top: -2px;
 }
-/* line 6969, ../../../scss/_clix2017.scss */
+/* line 6977, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing {
   max-width: 1176px !important;
   margin: 0 auto !important;
@@ -6855,7 +6869,7 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   background: #fff;
   box-shadow: 0px 2px 6px #000;
 }
-/* line 6986, ../../../scss/_clix2017.scss */
+/* line 6994, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content {
   display: -moz-box !important;
   display: -ms-flexbox !important;
@@ -6876,11 +6890,11 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   -ms-flex-pack: justify !important;
   -webkit-box-pack: justify !important;
 }
-/* line 7005, ../../../scss/_clix2017.scss */
+/* line 7013, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content:hover {
   background: #F0F1F2 !important;
 }
-/* line 7008, ../../../scss/_clix2017.scss */
+/* line 7016, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content .task_content_left {
   display: -moz-box !important;
   display: -ms-flexbox !important;
@@ -6893,7 +6907,7 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   -ms-flex-align: center !important;
   -webkit-box-align: center !important;
 }
-/* line 7019, ../../../scss/_clix2017.scss */
+/* line 7027, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content .task_content_left .task_content_details {
   display: -moz-box !important;
   display: -ms-flexbox !important;
@@ -6912,13 +6926,13 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
 }
-/* line 7036, ../../../scss/_clix2017.scss */
+/* line 7044, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content .task_content_left .task_content_details .hyperlink-user {
   border: 2px solid #b9b9b9;
   height: 50px;
   width: 50px;
 }
-/* line 7041, ../../../scss/_clix2017.scss */
+/* line 7049, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content .task_content_left .task_content_details .hyperlink-style {
   text-decoration: none !important;
   font-family: inherit !important;
@@ -6931,7 +6945,7 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
-/* line 7054, ../../../scss/_clix2017.scss */
+/* line 7062, ../../../scss/_clix2017.scss */
 .task_editor_section .task_listing .task_content .task_content_left .task_content_details .hyperlink-info {
   text-decoration: none !important;
   font-family: inherit !important;
@@ -6941,22 +6955,23 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   margin-top: 4px !important;
 }
 
-/* line 7070, ../../../scss/_clix2017.scss */
+/* line 7078, ../../../scss/_clix2017.scss */
 .lesson-title {
   font-size: 18px;
   padding-top: 10px;
   padding-left: 10px;
 }
 
-/* line 7076, ../../../scss/_clix2017.scss */
+/* line 7084, ../../../scss/_clix2017.scss */
 .activity-title {
   font-size: 18px;
   padding-top: 10px;
   padding-left: 23px;
   margin: 0px;
+  text-align: center;
   border: 2px solid rgba(128, 128, 128, 0.15);
 }
-/* line 7083, ../../../scss/_clix2017.scss */
+/* line 7092, ../../../scss/_clix2017.scss */
 .activity-title > li {
   list-style: none;
   border-top: 1px solid #e9e9e9;
@@ -6968,18 +6983,18 @@ ul.nav_menu_1 > li > a.selected, ul.nav_menu_1 > li > a:hover {
   height: 150px;
   background-color: white;
 }
-/* line 7094, ../../../scss/_clix2017.scss */
+/* line 7103, ../../../scss/_clix2017.scss */
 .activity-title > li.active {
   background: rgba(0, 140, 186, 0.42);
   height: 150px;
   margin-top: -10px;
 }
-/* line 7100, ../../../scss/_clix2017.scss */
+/* line 7109, ../../../scss/_clix2017.scss */
 .activity-title > li > a {
   color: black;
 }
 
-/* line 7109, ../../../scss/_clix2017.scss */
+/* line 7118, ../../../scss/_clix2017.scss */
 .task_page_rendered {
   margin-left: 20px;
   max-width: 900px;
