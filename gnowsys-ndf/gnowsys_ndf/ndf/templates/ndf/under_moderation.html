@@ -1,4 +1,4 @@
-{% extends "ndf/base.html" %}
+{% extends "ndf/gbase.html" %}
 {% load i18n %}
 {% load ndf_tags %}
 {% get_group_name groupid as group_name_tag %}
@@ -6,13 +6,11 @@
 {% block title %} {{title}} {% endblock %}
 {% block style %}
 {{ block.super }}
-  .info-text{
-    margin-left:2rem !important;
+  
+  .moderation-css{
+    background-color: #ffffff;
   }
-  .img-mid-size, .card-thumbnail{
-        margin-left:4rem !important;
-        border:1px solid grey;
-  }
+
 
 {% endblock %}
 
@@ -25,18 +23,17 @@
 {% endblock %}
 
 {% block body_content %}
-	
-  <h5> File "{{node.name}}" - submitted by {{node.created_by|get_username}}</h5>
-
-      {% if is_under_moderation %}
-      This resource is under '{{top_group_obj.moderation_level}}-step Moderation'. 
-      {% if request.user.id == node.created_by %}
-        You will get an email notification for any update on this resource.</br>
-        However, you can access it from <a href="/{{node.created_by|get_username}}/file/{{node.pk}}" target="_blank">your work space</a>.
-      {% endif %}
-  {% else %}
-     This resource is successfully moderated and has been published to "{{top_group_obj.name}}".
-  {% endif %} <!-- is_under_moderation bool check -->
+<div class="small-12 columns moderation-css">
+    <h3> File:"{{node.name}}" is submitted by {{node.created_by|get_username}}</h3>
+        {% if is_under_moderation %}
+        <p>This resource is under <b>'{{top_group_obj.moderation_level}}</b>-step Moderation'. </p>
+        {% if request.user.id == node.created_by %}
+          <i>You will get an email notification for any update on this resource.</br>
+          However, you can access it from <a href="/{{node.created_by|get_username}}/file/{{node.pk}}" target="_blank">your work space</a>.</i>
+        {% endif %}
+    {% else %}
+       <i>This resource is successfully moderated and has been published to <b>"{{top_group_obj.name}}".</b></i>
+    {% endif %} <!-- is_under_moderation bool check -->
     <br/>
         <div class="row mod-status-info-div info-text">
           {% if cleared_group_objs %}
@@ -64,10 +61,15 @@
           {% endif %}
             <!-- end new -->      
         </ul>
+            <a  target="_blank" class="button-save-new" href="{% url 'read_file' group_name_tag node.pk download_filename %}">
+               {% trans "View in Full Screen" %}
+               <i class="fi-projection-screen"> </i>
+            </a>
+
         {% if not is_under_moderation %}
-           <a href="{% url 'file_detail' top_group_obj.name node %}">View this file</a>
+           <a href="{% url 'file_detail' top_group_obj.name node %}" class="button-save-new">View this file</a>
         {% endif %}
-      
       </div>
     </div>
+</div>
 {% endblock%}

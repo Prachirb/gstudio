@@ -278,15 +278,17 @@ Still keeping for future ref (if needed).
               <!-- not a collection -->
               {% if not is_group %}
               {% if not topic %}
-                <h3 class="text-gray">{{node.name}}:</h3>
+                <div class="small-12 columns">
+                  <h3 class="text-gray">{{node.name}}:</h3>
+                </div>
               {% endif %}
 
               {% if is_collection_card_view == True and node.collection_set  %}
-                <center>
+              <div class="small-12 columns">
                 <div class="show-image">
                    {% if node.if_file.original.relurl and 'image' in node.if_file.mime_type  %}
                     <a class="th {% if node.collection_set %}collection-exists{% endif %}"   data-oid="{{node.pk|safe}}">
-                    <img src="{{MEDIA_URL}}{{node.if_file.original.relurl}} " style="min-height:200px;" />
+                    <img src="{{MEDIA_URL}}{{node.if_file.original.relurl}} "  class="center" style="min-height:200px;" />
                     </a>
                     {% endif %}
                   {% if not node.collection_set %}
@@ -298,9 +300,9 @@ Still keeping for future ref (if needed).
                     </figcaption>
                     {% endif %}
                 </div>
-                </center>
+              </div>
               {% elif 'image' in node.if_file.mime_type and is_collection_card_view != "True" %}
-               <center>
+              <div class="small-12 columns">
                 <div class="show-image">
                     <img  src="{{MEDIA_URL}}{{node.if_file.original.relurl}}" style="min-height:200px;" />
                   <figcaption style="position:relative;top:0;left:0" title="Click Here to View Image in Full Screen">
@@ -310,7 +312,7 @@ Still keeping for future ref (if needed).
                     </figcaption>
                       </a>
                 </div>
-                </center>
+              </div>
               {% elif 'Pandora_video' in node.member_of_names_list and not is_collection_card_view %}
                 {% get_source_id node.pk as source_id %}
                 <video width="500" poster="http://wetube.gnowledge.org/{{source_id}}/icon128.jpg" controls>
@@ -399,7 +401,7 @@ Still keeping for future ref (if needed).
                     <small class="fi-arrow-left"> {% trans 'Previous' %}</small>
                   </h4>
 
-                  <a class="small-4 columns button tiny text-center" style="margin-top: 1em;" href="{% url 'read_file' group_name_tag node download_filename %}" download="{{ download_filename }}">
+                  <a class="small-4 columns button-save-new button tiny text-center" style="margin-top: 1em;" href="{% url 'read_file' group_name_tag node download_filename %}" download="{{ download_filename }}">
                     {% trans 'Download' %}
                   </a>
                   <h4 class="text-right small-4 columns redirection" onclick="Book.nextPage();">
@@ -551,7 +553,7 @@ Still keeping for future ref (if needed).
 
             {% if node.if_file.mime_type %}
                 {% if not node.collection_set and "Jsmol" not in node.member_of_names_list%}
-                <a class="button tiny" title="Click here to Download" href="{% url 'read_file' group_name_tag node download_filename %}" download="{{ download_filename }}">
+                <a class="button-cancel-new" title="Click here to Download" href="{% url 'read_file' group_name_tag node download_filename %}" download="{{ download_filename }}">
                   Download
                 </a>
                 {% endif %}
