@@ -30091,40 +30091,24 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   height: 260px;
   border: 1px solid #164A7B;
 }
-<<<<<<< HEAD
-/* line 6770, ../../../scss/_app_styles.scss */
-=======
-/* line 6815, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6816, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview {
   height: 200px;
   width: 100%;
   border-width: 5px;
 }
-<<<<<<< HEAD
-/* line 6777, ../../../scss/_app_styles.scss */
-=======
-/* line 6822, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6823, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos-1 img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: 210px !important;
 }
-<<<<<<< HEAD
-/* line 6782, ../../../scss/_app_styles.scss */
-=======
-/* line 6827, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6828, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview img {
   width: 100%;
   height: 210px;
 }
-<<<<<<< HEAD
-/* line 6786, ../../../scss/_app_styles.scss */
-=======
-/* line 6831, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6832, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos {
   /* Prevent vertical gaps */
   line-height: 0;
@@ -30135,22 +30119,14 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   column-count: 2;
   column-gap: 0px;
 }
-<<<<<<< HEAD
-/* line 6796, ../../../scss/_app_styles.scss */
-=======
-/* line 6841, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6842, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: 100px !important;
 }
 @media (max-width: 1200px) {
-<<<<<<< HEAD
-  /* line 6803, ../../../scss/_app_styles.scss */
-=======
-  /* line 6848, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6849, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos {
     -moz-column-count: 2;
     -webkit-column-count: 2;
@@ -30158,11 +30134,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 1000px) {
-<<<<<<< HEAD
-  /* line 6812, ../../../scss/_app_styles.scss */
-=======
-  /* line 6857, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6858, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos {
     -moz-column-count: 2;
     -webkit-column-count: 2;
@@ -30170,11 +30142,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 800px) {
-<<<<<<< HEAD
-  /* line 6819, ../../../scss/_app_styles.scss */
-=======
-  /* line 6864, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6865, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos {
     -moz-column-count: 2;
     -webkit-column-count: 2;
@@ -30182,22 +30150,14 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 400px) {
-<<<<<<< HEAD
-  /* line 6826, ../../../scss/_app_styles.scss */
-=======
-  /* line 6871, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6872, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos {
     -moz-column-count: 1;
     -webkit-column-count: 1;
     column-count: 1;
   }
 }
-<<<<<<< HEAD
-/* line 6834, ../../../scss/_app_styles.scss */
-=======
-/* line 6879, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6880, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos-02 {
   /* no vertical space*/
   line-height: 0;
@@ -30212,22 +30172,14 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   -webkit-row-gap: 0px;
   -moz-row-gap: 0px;
 }
-<<<<<<< HEAD
-/* line 6850, ../../../scss/_app_styles.scss */
-=======
-/* line 6895, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6896, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos-02 img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: 105px !important;
 }
 @media (max-width: 1200px) {
-<<<<<<< HEAD
-  /* line 6857, ../../../scss/_app_styles.scss */
-=======
-  /* line 6902, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6903, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-02 {
     -moz-row-count: 2;
     -webkit-column-count: 1;
@@ -30238,11 +30190,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 1000px) {
-<<<<<<< HEAD
-  /* line 6868, ../../../scss/_app_styles.scss */
-=======
-  /* line 6913, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6914, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-02 {
     -moz-row-count: 2;
     -webkit-column-count: 1;
@@ -30253,11 +30201,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 800px) {
-<<<<<<< HEAD
-  /* line 6879, ../../../scss/_app_styles.scss */
-=======
-  /* line 6924, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6925, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-02 {
     -moz-row-count: 2;
     -webkit-column-count: 0;
@@ -30268,11 +30212,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 400px) {
-<<<<<<< HEAD
-  /* line 6890, ../../../scss/_app_styles.scss */
-=======
-  /* line 6935, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6936, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-02 {
     -moz-row-count: 2;
     -webkit-column-count: 1;
@@ -30282,11 +30222,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
     -moz-row-gap: 0px;
   }
 }
-<<<<<<< HEAD
-/* line 6901, ../../../scss/_app_styles.scss */
-=======
-/* line 6946, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6947, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos-03 {
   /* no vertical space*/
   line-height: 0;
@@ -30301,22 +30237,14 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   -webkit-row-gap: 0px;
   -moz-row-gap: 0px;
 }
-<<<<<<< HEAD
-/* line 6917, ../../../scss/_app_styles.scss */
-=======
-/* line 6962, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 6963, ../../../scss/_app_styles.scss */
 .asset_tile .asset_preview .photos-03 img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: 70px !important;
 }
 @media (max-width: 1200px) {
-<<<<<<< HEAD
-  /* line 6924, ../../../scss/_app_styles.scss */
-=======
-  /* line 6969, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6970, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-03 {
     -moz-row-count: 3;
     -webkit-column-count: 1;
@@ -30327,11 +30255,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 1000px) {
-<<<<<<< HEAD
-  /* line 6935, ../../../scss/_app_styles.scss */
-=======
-  /* line 6980, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6981, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-03 {
     -moz-row-count: 3;
     -webkit-column-count: 1;
@@ -30342,11 +30266,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 800px) {
-<<<<<<< HEAD
-  /* line 6946, ../../../scss/_app_styles.scss */
-=======
-  /* line 6991, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 6992, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-03 {
     -moz-row-count: 3;
     -webkit-column-count: 0;
@@ -30357,11 +30277,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   }
 }
 @media (max-width: 400px) {
-<<<<<<< HEAD
-  /* line 6957, ../../../scss/_app_styles.scss */
-=======
-  /* line 7002, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+  /* line 7003, ../../../scss/_app_styles.scss */
   .asset_tile .asset_preview .photos-03 {
     -moz-row-count: 3;
     -webkit-column-count: 1;
@@ -30371,19 +30287,11 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
     -moz-row-gap: 0px;
   }
 }
-<<<<<<< HEAD
-/* line 6968, ../../../scss/_app_styles.scss */
+/* line 7014, ../../../scss/_app_styles.scss */
 .asset_tile .asset_text {
   padding: 7px 0px 0px 0px;
 }
-/* line 6970, ../../../scss/_app_styles.scss */
-=======
-/* line 7013, ../../../scss/_app_styles.scss */
-.asset_tile .asset_text {
-  padding: 7px 0px 0px 0px;
-}
-/* line 7015, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7016, ../../../scss/_app_styles.scss */
 .asset_tile .asset_text .asset_title {
   letter-spacing: 0.2px;
   overflow: hidden;
@@ -30392,19 +30300,11 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   padding-top: 10px;
   padding-left: 6px;
 }
-<<<<<<< HEAD
-/* line 6978, ../../../scss/_app_styles.scss */
+/* line 7024, ../../../scss/_app_styles.scss */
 .asset_tile .asset_text .asset_title .filenode {
   z-index: -1;
 }
-/* line 6984, ../../../scss/_app_styles.scss */
-=======
-/* line 7023, ../../../scss/_app_styles.scss */
-.asset_tile .asset_text .asset_title .filenode {
-  z-index: -1;
-}
-/* line 7029, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7030, ../../../scss/_app_styles.scss */
 .asset_tile .asset_text .asset_desc {
   letter-spacing: 0.3px;
   overflow: hidden;
@@ -30413,11 +30313,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   color: grey;
 }
 
-<<<<<<< HEAD
-/* line 6995, ../../../scss/_app_styles.scss */
-=======
-/* line 7040, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7041, ../../../scss/_app_styles.scss */
 .audio_tile {
   display: inline-block;
   margin-top: 10px;
@@ -30428,38 +30324,22 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   width: 270px;
   margin-right: 15px;
 }
-<<<<<<< HEAD
-/* line 7005, ../../../scss/_app_styles.scss */
+/* line 7051, ../../../scss/_app_styles.scss */
 .audio_tile .audio_preview audio {
   width: 100%;
 }
-/* line 7008, ../../../scss/_app_styles.scss */
+/* line 7054, ../../../scss/_app_styles.scss */
 .audio_tile .audio_preview figcaption {
   margin-left: 5px;
 }
-/* line 7013, ../../../scss/_app_styles.scss */
-=======
-/* line 7050, ../../../scss/_app_styles.scss */
-.audio_tile .audio_preview audio {
-  width: 100%;
-}
-/* line 7053, ../../../scss/_app_styles.scss */
-.audio_tile .audio_preview figcaption {
-  margin-left: 5px;
-}
-/* line 7058, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7059, ../../../scss/_app_styles.scss */
 .audio_tile:hover {
   border-width: 2px 2px 5px 2px;
   border-style: solid;
   border-color: #ce7869;
 }
 
-<<<<<<< HEAD
-/* line 7024, ../../../scss/_app_styles.scss */
-=======
-/* line 7069, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7070, ../../../scss/_app_styles.scss */
 .template_tile {
   display: inline-block;
   margin-top: 10px;
@@ -30470,46 +30350,26 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   width: 120px;
   margin-right: 15px;
 }
-<<<<<<< HEAD
-/* line 7034, ../../../scss/_app_styles.scss */
-=======
-/* line 7079, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7080, ../../../scss/_app_styles.scss */
 .template_tile .template_preview {
   height: 85px;
   width: 100%;
 }
-<<<<<<< HEAD
-/* line 7037, ../../../scss/_app_styles.scss */
+/* line 7083, ../../../scss/_app_styles.scss */
 .template_tile .template_preview img {
   width: 100%;
 }
-/* line 7041, ../../../scss/_app_styles.scss */
-=======
-/* line 7082, ../../../scss/_app_styles.scss */
-.template_tile .template_preview img {
-  width: 100%;
-}
-/* line 7086, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7087, ../../../scss/_app_styles.scss */
 .template_tile:hover {
   border-width: 2px 2px 5px 2px;
   border-style: solid;
   border-color: #ce7869;
 }
-<<<<<<< HEAD
-/* line 7047, ../../../scss/_app_styles.scss */
+/* line 7093, ../../../scss/_app_styles.scss */
 .template_tile .template_text {
   padding: 10px 0px 0px 0px;
 }
-/* line 7049, ../../../scss/_app_styles.scss */
-=======
-/* line 7092, ../../../scss/_app_styles.scss */
-.template_tile .template_text {
-  padding: 10px 0px 0px 0px;
-}
-/* line 7094, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7095, ../../../scss/_app_styles.scss */
 .template_tile .template_text .template_title {
   letter-spacing: 0.2px;
   overflow: hidden;
@@ -30518,11 +30378,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   padding-top: 22px;
   padding-left: 6px;
 }
-<<<<<<< HEAD
-/* line 7058, ../../../scss/_app_styles.scss */
-=======
-/* line 7103, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7104, ../../../scss/_app_styles.scss */
 .template_tile .template_text .template_desc {
   letter-spacing: 0.3px;
   overflow: hidden;
@@ -30531,11 +30387,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   color: grey;
 }
 
-<<<<<<< HEAD
-/* line 7072, ../../../scss/_app_styles.scss */
-=======
-/* line 7117, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7118, ../../../scss/_app_styles.scss */
 .preview_asset {
   background: #ccc;
   border: 2px solid #999;
@@ -30545,32 +30397,20 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
 }
 
 /*  Asset detail */
-<<<<<<< HEAD
-/* line 7083, ../../../scss/_app_styles.scss */
-=======
-/* line 7128, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7129, ../../../scss/_app_styles.scss */
 .overlay-head {
   background-color: #fff;
   height: 60px;
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-/* line 7089, ../../../scss/_app_styles.scss */
-=======
-/* line 7134, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7135, ../../../scss/_app_styles.scss */
 .listing-row {
   margin-top: 10px !important;
   background-color: #ffffff;
 }
 
-<<<<<<< HEAD
-/* line 7094, ../../../scss/_app_styles.scss */
-=======
-/* line 7139, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7140, ../../../scss/_app_styles.scss */
 .orange-button {
   color: #ce7869;
   padding: 7px 14px;
@@ -30584,21 +30424,13 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   margin-top: 8px;
   cursor: pointer;
 }
-<<<<<<< HEAD
-/* line 7106, ../../../scss/_app_styles.scss */
-=======
-/* line 7151, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7152, ../../../scss/_app_styles.scss */
 .orange-button:hover {
   background-color: rgba(206, 120, 105, 0.2);
   color: #ce7869;
 }
 
-<<<<<<< HEAD
-/* line 7113, ../../../scss/_app_styles.scss */
-=======
-/* line 7158, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7159, ../../../scss/_app_styles.scss */
 .explore-button {
   border-radius: 5px;
   text-transform: uppercase;
@@ -30610,11 +30442,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   border: 2px solid #6a0054;
   background-color: #6a0054;
 }
-<<<<<<< HEAD
-/* line 7124, ../../../scss/_app_styles.scss */
-=======
-/* line 7169, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7170, ../../../scss/_app_styles.scss */
 .explore-button:hover {
   background-color: #ffffff;
   cursor: pointer;
@@ -30622,17 +30450,13 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
 }
 
 /* asset description */
-<<<<<<< HEAD
-/* line 7133, ../../../scss/_app_styles.scss */
-=======
-/* line 7178, ../../../scss/_app_styles.scss */
->>>>>>> bc2d20b51be017148930aa86fa126f12a3616a9f
+/* line 7179, ../../../scss/_app_styles.scss */
 .name-desc-asset-cont-area {
   width: 95%;
   margin-left: 24px;
 }
 
-/* line 7186, ../../../scss/_app_styles.scss */
+/* line 7187, ../../../scss/_app_styles.scss */
 .button-cancel-new {
   height: 2rem;
   padding: 0 2rem;
@@ -30650,12 +30474,12 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   transition: all .1s ease;
   margin-right: 1px;
 }
-/* line 7202, ../../../scss/_app_styles.scss */
+/* line 7203, ../../../scss/_app_styles.scss */
 .button-cancel-new:hover {
   background-color: #fff;
   color: #333333;
 }
-/* line 7207, ../../../scss/_app_styles.scss */
+/* line 7208, ../../../scss/_app_styles.scss */
 .button-cancel-new > a {
   font-family: open_sansbold,sans-serif;
   font-size: 1.2rem;
@@ -30667,13 +30491,13 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   transition: all .1s ease;
   margin-right: 1px;
 }
-/* line 7217, ../../../scss/_app_styles.scss */
+/* line 7218, ../../../scss/_app_styles.scss */
 .button-cancel-new > a:hover {
   background-color: #fff;
   color: #333333;
 }
 
-/* line 7225, ../../../scss/_app_styles.scss */
+/* line 7226, ../../../scss/_app_styles.scss */
 .button-save-new {
   height: 2rem;
   padding: 0 2rem;
@@ -30690,13 +30514,13 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   color: #fff;
   transition: all .1s ease;
 }
-/* line 7240, ../../../scss/_app_styles.scss */
+/* line 7241, ../../../scss/_app_styles.scss */
 .button-save-new:hover {
   background-color: #fff;
   color: #912a7d;
 }
 
-/* line 7251, ../../../scss/_app_styles.scss */
+/* line 7252, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner {
   width: 100%;
   height: 200px;
@@ -30704,7 +30528,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   background-size: 100% 100%;
   position: relative;
 }
-/* line 7258, ../../../scss/_app_styles.scss */
+/* line 7259, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner:before {
   content: ' ';
   background-color: rgba(0, 0, 0, 0.1);
@@ -30718,13 +30542,13 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   z-index: 10;
   box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2);
 }
-/* line 7272, ../../../scss/_app_styles.scss */
+/* line 7273, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner .banner_profile {
   position: absolute;
   bottom: 30px;
   left: 40px;
 }
-/* line 7277, ../../../scss/_app_styles.scss */
+/* line 7278, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner .banner_profile .buddy_logo {
   display: inline-block;
   margin-right: 10px;
@@ -30733,60 +30557,60 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   overflow: hidden;
   background-color: #fff;
 }
-/* line 7285, ../../../scss/_app_styles.scss */
+/* line 7286, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner .banner_profile .buddy_logo svg {
   height: 100px;
   width: 100px;
 }
-/* line 7290, ../../../scss/_app_styles.scss */
+/* line 7291, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner .banner_profile .buddy_logo svg path {
   fill: #7a422a;
 }
-/* line 7295, ../../../scss/_app_styles.scss */
+/* line 7296, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner .banner_profile .banner_heading {
   color: #fff;
   display: inline-block;
   vertical-align: top;
 }
-/* line 7300, ../../../scss/_app_styles.scss */
+/* line 7301, ../../../scss/_app_styles.scss */
 .mydesk_page .page_banner .banner_profile .banner_heading .buddy_name {
   font-size: 23px;
   display: block;
   margin-bottom: 10px;
 }
-/* line 7308, ../../../scss/_app_styles.scss */
+/* line 7309, ../../../scss/_app_styles.scss */
 .mydesk_page .page_menu {
   border-bottom: 1px solid #e5e5e5;
 }
-/* line 7312, ../../../scss/_app_styles.scss */
+/* line 7313, ../../../scss/_app_styles.scss */
 .mydesk_page .page_menu li > a {
   padding: 12px 20px 9px;
 }
 
-/* line 7322, ../../../scss/_app_styles.scss */
+/* line 7323, ../../../scss/_app_styles.scss */
 .lms_explore_back_unit {
   background-color: #fff;
   margin-top: -19.3px;
 }
 
-/* line 7329, ../../../scss/_app_styles.scss */
+/* line 7330, ../../../scss/_app_styles.scss */
 .course-students-data {
   margin: 2px 2px 2px 2px;
   border: 2px solid #164a7b;
   padding: 19px 14px 0px 5px;
 }
-/* line 7336, ../../../scss/_app_styles.scss */
+/* line 7337, ../../../scss/_app_styles.scss */
 .course-students-data .students-table-legends > span:nth-child(odd) {
   margin: 0px 10px;
 }
-/* line 7339, ../../../scss/_app_styles.scss */
+/* line 7340, ../../../scss/_app_styles.scss */
 .course-students-data .students-table-legends > span:nth-child(even) {
   display: inline-block;
   vertical-align: top;
   margin-right: 10px;
 }
 
-/* line 7347, ../../../scss/_app_styles.scss */
+/* line 7348, ../../../scss/_app_styles.scss */
 .badge_ex {
   display: inline-block;
   line-height: 22px;
@@ -30802,7 +30626,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
 }
 
-/* line 7366, ../../../scss/_app_styles.scss */
+/* line 7367, ../../../scss/_app_styles.scss */
 .badge_ex.green {
   background: #77cc51;
   border-color: #59ad33;
@@ -30812,7 +30636,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   background-image: linear-gradient(to bottom, #a5dd8c, #77cc51);
 }
 
-/* line 7375, ../../../scss/_app_styles.scss */
+/* line 7376, ../../../scss/_app_styles.scss */
 .badge_ex.yellow {
   background: #faba3e;
   border-color: #f4a306;
@@ -30822,7 +30646,7 @@ ul.horizontal_tabs_gstudio > li.sub_group_action:hover ul {
   background-image: linear-gradient(to bottom, #fcd589, #faba3e);
 }
 
-/* line 7384, ../../../scss/_app_styles.scss */
+/* line 7385, ../../../scss/_app_styles.scss */
 .badge_ex.red {
   background: #fa623f;
   border-color: #fa5a35;
