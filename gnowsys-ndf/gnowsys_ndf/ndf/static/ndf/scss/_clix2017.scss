@@ -6551,3 +6551,29 @@ ul.authoring-tab{
     }
 
 }
+
+
+
+.overlay-margin{
+    background-color:#2b333f4d; 
+    height:100vh;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 52px;
+
+    .login-text{
+        margin: 20px 20px 20px 200px;
+        color:#ffffff96;
+        font-size:18px;
+        letter-spacing:0px;
+    }
+
+    .agency-type{
+        border-radius:20px;
+        background-color:grey;
+    }
+}
+
